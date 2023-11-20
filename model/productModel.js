@@ -30,6 +30,11 @@ const productSchema = new mongoose.Schema({
             message:'discount must be less than the price'
         }
     },
+    disPercentage:{
+        type:Number,
+        min:2,
+        max:85
+    },
     highligth:{
         type:String,
         required:[true,'product must have description']
@@ -57,7 +62,8 @@ const productSchema = new mongoose.Schema({
 },
 {
     toJSON:{virtuals:true},
-    toObject:{virtuals:true}
+    toObject:{virtuals:true},
+    timestamps:true
 });
 
 productSchema.pre('save' , function(next) {

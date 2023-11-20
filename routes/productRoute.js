@@ -9,6 +9,8 @@ router.get('/',productController.getAllProducts);
 
 router.get('/sales',productController.getSalesProd);
 
+router.get('/top-sales',productController.getTopSales);
+
 router.get('/:id',productController.getProduct);
 
 router.get('/categories',productController.getCategories);

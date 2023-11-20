@@ -86,7 +86,7 @@ exports.getProduct = async (req,res,next)=>{
 
 
 exports.getSalesProd = catchAsync(async (req,res,next) =>{
-    const product = await Product.find({discount:{$ne:undefined}});
+    const product = await Product.find({discount:{$ne:undefined}}).sort({'updatedAt':-1});
     res.status(200).json({
         status:'success',
         data:{
@@ -208,7 +208,7 @@ exports.getSearch = catchAsync(async(req,res,next) =>{
 })
 ////////////////////////////////////////////////
 
-exports.addDiscount = async (req,res)=>{
+exports.addDiscount = async (req,res,next)=>{
     try {
         
         const discount = req.body.discount;
@@ -224,6 +224,7 @@ exports.addDiscount = async (req,res)=>{
 
 
         product.discount = afterDiscount;
+        product.disPercentage = req.body.discount;
         await product.save();
         res.status(200).json({
             status:'success',
@@ -257,3 +258,10 @@ exports.removeDiscount = async (req,res) =>{
         next(error)
     }
 }
+
+exports.getTopSales = catchAsync(async (req,res,next) =>{
+    const products = await Product.find({discount:{$ne:undefined}}).sort({'disPercentage':-1}) 
+    res.status(200).json({
+        products
+    })
+})
