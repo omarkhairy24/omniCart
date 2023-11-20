@@ -7,6 +7,8 @@ router.use('/:productId/reviews',reviewRoute);
 
 router.get('/',productController.getAllProducts);
 
+router.get('/search',productController.getSearch);
+
 router.get('/sales',productController.getSalesProd);
 
 router.get('/top-sales',productController.getTopSales);

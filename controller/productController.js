@@ -192,13 +192,24 @@ exports.getCategory = catchAsync(async(req,res)=>{
     })
 })
 
-///////////////////////////////////////////////////
+
 exports.getSearch = catchAsync(async(req,res,next) =>{
-    const Psearch = req.query.Psearch;
-    let products = await Product.find({ $text: { $search: Psearch } })
-    if(products.length === 0){
-        products = await Product.find().where('category').equals(Psearch)
-    }
+    const search = req.query.search;
+    let ratingAverage = req.query.ratingAverage
+    let price = req.query.price
+    const queryObj = { price,ratingAverage };
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+    console.log(queryStr);
+
+    let products = await Product.find({$and:[
+        {$or:[
+        {name: { $regex: search, $options: "xi"}},
+        {category:{ $regex: search, $options: "xi"}},
+        {overview: { $regex: search, $options: "xi"}}
+    ]},JSON.parse(queryStr)]})
+       
     res.status(200).json({
         status:'success',
         data:{
@@ -206,7 +217,7 @@ exports.getSearch = catchAsync(async(req,res,next) =>{
         }
     })
 })
-////////////////////////////////////////////////
+
 
 exports.addDiscount = async (req,res,next)=>{
     try {
