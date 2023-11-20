@@ -36,7 +36,6 @@ exports.resizeImage = async(req,res,next)=>{
                 const fileName = `product-${req.params.id}-${Date.now()}-${i+1}.jpeg`;
     
                 await sharp(file.buffer)
-                .resize(400,800)
                 .toFormat('jpeg')
                 .jpeg({quality:100})
                 .toFile(`public/images/${fileName}`)
@@ -200,7 +199,7 @@ exports.getSearch = catchAsync(async(req,res,next) =>{
     const queryObj = { price,ratingAverage };
 
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+    queryStr = queryStr.replace(/\b(gte|gt|eq|lte|lt)\b/g, match => `$${match}`);
     console.log(queryStr);
 
     let products = await Product.find({$and:[
@@ -257,6 +256,7 @@ exports.removeDiscount = async (req,res) =>{
             return next(new AppError('not authorized',403))
         }
         product.discount = undefined;
+        product.disPercentage = undefined;
         await product.save();
         res.status(200).json({
             status:'success',

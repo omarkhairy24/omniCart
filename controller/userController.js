@@ -46,7 +46,7 @@ exports.updateUser = async (req,res,next)=> {
         }
 
         const filterBody = filterObj(req.body,'name','email');
-        let user  = await User.findByIdAndUpdate((req.user.id || res.locals.user),filterBody,{
+        let user  = await User.findByIdAndUpdate(req.user.id ,filterBody,{
             new:true,
             runValidators:true
         })
@@ -63,7 +63,7 @@ exports.updateUser = async (req,res,next)=> {
 
 exports.deactivateUser = async(req,res,next) =>{
     try {
-        await User.findByIdAndUpdate((req.user.id||res.locals.user),{active:false})
+        await User.findByIdAndUpdate(req.user.id,{active:false})
         res.status(200).json({
             status:'success'
         })
