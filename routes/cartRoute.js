@@ -8,7 +8,7 @@ router.put('/add-to-cart/:id',authController.protect,authController.restrictTo('
 
 router.put('/increase-quantity/:productId',authController.protect,authController.restrictTo('user'),cartController.increaseQuantity);
 
-router.put('/decrease-quantity/:productId',authController.protect,authController.restrictTo('user'),cartController.controlQuantity);
+router.put('/decrease-quantity/:productId',authController.protect,authController.restrictTo('user'),cartController.reduceQuantity);
 
 router.delete('/remove-from-cart/:productId',authController.protect,authController.restrictTo('user'),cartController.removeFromCart);
 

@@ -70,7 +70,7 @@ exports.removeFromCart = async(req,res) =>{
     }
 }
 
-exports.controlQuantity = async (req,res) =>{
+exports.reduceQuantity = async (req,res) =>{
     try {
         const productId = req.params.productId
         const user = await User.findById(req.user.id);
