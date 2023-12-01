@@ -1,4 +1,5 @@
 const Product = require('../model/productModel');
+const User = require('../model/userModel');
 const multer = require('multer');
 const sharp = require('sharp');
 const AppError = require('../util/AppError');
@@ -281,12 +282,12 @@ exports.getTopSales = catchAsync(async (req,res,next) =>{
 
 
 exports.getHome = catchAsync(async (req,res,next)=>{
-    const topSales = await Product.find({discount:{$ne:undefined}}).sort({'disPercentage':-1});
+    const topSales = await Product.find({discount:{$ne:undefined}}).sort({'disPercentage':-1}).populate('brand','name');
     const categories = Product.schema.path('category').enumValues;
     const sales = await Product.find({discount:{$ne:undefined}}).sort({'updateDisTime':-1});
     res.status(200).json({
         topSales:topSales,
         sales:sales,
-        categories:categories  
+        categories:categories
     })
 })
