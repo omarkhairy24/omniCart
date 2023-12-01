@@ -35,7 +35,7 @@ const sendErrProd = (err,req,res) =>{
     }else{
         res.status(err.statusCode).json({
             status:'fail',
-            msg:err.message
+            message:err.message
         })
     }
 }
@@ -51,10 +51,11 @@ module.exports = (err,req,res,next)=>{
     if(process.env.NODE_ENV === 'production'){
         
         let error = {...err}
+        error.message = err.message
 
-        if(err.name === 'CastError') error = HandleCastErrorDB(error)
-        if(err.code === 11000) error = HandleDublicateFieldsDB(error)
-        if(err.name === 'ValidationError') error = HandleValidationErrorDB(error)
+        if(error.name === 'CastError') error = HandleCastErrorDB(error)
+        if(error.code === 11000) error = HandleDublicateFieldsDB(error)
+        if(error.name === 'ValidationError') error = HandleValidationErrorDB(error)
 
         sendErrProd(error,req,res)
     }

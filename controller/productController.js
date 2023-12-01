@@ -276,3 +276,15 @@ exports.getTopSales = catchAsync(async (req,res,next) =>{
         products
     })
 })
+
+
+exports.getHome = catchAsync(async (req,res,next)=>{
+    const topSales = await Product.find({discount:{$ne:undefined}}).sort({'disPercentage':-1});
+    const categories = Product.schema.path('category').enumValues;
+    const sales = await Product.find({discount:{$ne:undefined}}).sort({'createdAt':-1});
+    res.status(200).json({
+        topSales:topSales,
+        sales:sales,
+        categories:categories  
+    })
+})

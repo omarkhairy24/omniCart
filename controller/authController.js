@@ -52,7 +52,7 @@ exports.signup = async (req,res,next) =>{
             role:req.query.role
         })
 
-        createSendToken(user,201,res)        
+        createSendToken(user,200,res)        
 
     } catch (error) {
         next(error)
@@ -64,17 +64,17 @@ exports.login = async (req,res,next) =>{
         
         const {email,password} = req.query
         if(!email || !password){
-            return next(new AppError('no email or password provided',404))
+            return next(new AppError('no email or password provided',401))
         }
         const user = await User.findOne({email:email}).select('+password')
         if(!user){
-            return next(new AppError('incorrect email',500))
+            return next(new AppError('incorrect email',401))
         }
         if(! await user.correctPassword(password,user.password)){
-            return next(new AppError('incorrect password',500))
+            return next(new AppError('incorrect password',401))
         } 
         
-        createSendToken(user,201,res)
+        createSendToken(user,200,res)
 
     } catch (error) {
         next(error)
@@ -100,7 +100,7 @@ exports.protect = async (req,res,next)=> {
         }
 
         if(!token){
-            return next(new AppError('no token provided',500))
+            return next(new AppError('no token provided',498))
         }
 
         const decoded = await promisify(jwt.verify)(token,process.env.JWT_SECRET);
@@ -109,7 +109,7 @@ exports.protect = async (req,res,next)=> {
             return next(new AppError('user not found',404))
         }
         if(user.changePasswordAfter(decoded.iat)){
-            return next(new AppError('invalid token',500))
+            return next(new AppError('invalid token',498))
         }
         req.user = user; 
         res.locals.user = user;
@@ -145,7 +145,7 @@ exports.isLoggedIn = async(req,res,next)=>{
 exports.forgetPassword = async (req,res,next) =>{
     const user = await User.findOne({email:req.query.email});
     if(!user){
-        return next(new AppError('user not found',500))
+        return next(new AppError('user not found',404))
     }
 
     const resetToken = user.createResetToken();

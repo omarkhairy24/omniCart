@@ -13,6 +13,8 @@ router.get('/sales',productController.getSalesProd);
 
 router.get('/top-sales',productController.getTopSales);
 
+router.get('/home',productController.getHome)
+
 router.get('/:id',productController.getProduct);
 
 router.get('/categories',productController.getCategories);
@@ -28,5 +30,7 @@ router.patch('/add-discount/:id',authController.protect,authController.restrictT
 router.patch('/remove-discount/:id',authController.protect,authController.restrictTo('company'),productController.removeDiscount);
 
 router.delete('/delete-product',authController.protect,productController.deleteProduct);
+
+
 
 module.exports = router;
