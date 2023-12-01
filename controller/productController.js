@@ -29,7 +29,7 @@ exports.resizeImage = async(req,res,next)=>{
             return next();
         };
     
-        req.body.images = [];
+        req.query.images = [];
     
         await Promise.all(
             req.files.images.map(async(file,i)=>{

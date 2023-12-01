@@ -45,11 +45,11 @@ exports.signup = async (req,res,next) =>{
     try {
         
         const user = await User.create({
-            name:req.body.name,
-            email:req.body.email,
-            password:req.body.password,
-            confirmPassword:req.body.confirmPassword,
-            role:req.body.role
+            name:req.query.name,
+            email:req.query.email,
+            password:req.query.password,
+            confirmPassword:req.query.confirmPassword,
+            role:req.query.role
         })
 
         createSendToken(user,201,res)        
@@ -62,7 +62,7 @@ exports.signup = async (req,res,next) =>{
 exports.login = async (req,res,next) =>{
     try {
         
-        const {email,password} = req.body
+        const {email,password} = req.query
         if(!email || !password){
             return next(new AppError('no email or password provided',404))
         }
@@ -143,7 +143,7 @@ exports.isLoggedIn = async(req,res,next)=>{
 }
 
 exports.forgetPassword = async (req,res,next) =>{
-    const user = await User.findOne({email:req.body.email});
+    const user = await User.findOne({email:req.query.email});
     if(!user){
         return next(new AppError('user not found',500))
     }
@@ -174,7 +174,7 @@ exports.forgetPassword = async (req,res,next) =>{
 
 exports.resetPassword = async (req,res,next) =>{
     try {
-        const resetToken = crypto.createHash('sha256').update(req.body.token).digest('hex');
+        const resetToken = crypto.createHash('sha256').update(req.query.token).digest('hex');
     
         const user = await User.findOne({
             passordResetToken:resetToken,
@@ -185,8 +185,8 @@ exports.resetPassword = async (req,res,next) =>{
             return next(new AppError('user not found',404))
         }
     
-        user.password = req.body.password;
-        user.confirmPassword = req.body.confirmPassword;
+        user.password = req.query.password;
+        user.confirmPassword = req.query.confirmPassword;
         user.passordResetToken = undefined;
         user.passwordResetExpires = undefined;
         
@@ -201,11 +201,11 @@ exports.resetPassword = async (req,res,next) =>{
 exports.updatePassword = async (req,res,next) => {
     try {
         const user = await User.findById((req.user.id||res.locals.user)).select('+password');
-        if(!(await user.correctPassword(req.body.currentPassword,user.password))){
+        if(!(await user.correctPassword(req.query.currentPassword,user.password))){
             return next(new AppError('user not found',404))
         }
-        user.password = req.body.password;
-        user.confirmPassword = req.body.confirmPassword;
+        user.password = req.query.password;
+        user.confirmPassword = req.query.confirmPassword;
         await user.save();
     
         res.status(201).json({
