@@ -235,6 +235,7 @@ exports.addDiscount = async (req,res,next)=>{
 
         product.discount = afterDiscount;
         product.disPercentage = req.body.discount;
+        product.updateDisTime = Date.now()
         await product.save();
         res.status(200).json({
             status:'success',
@@ -257,6 +258,7 @@ exports.removeDiscount = async (req,res) =>{
         }
         product.discount = undefined;
         product.disPercentage = undefined;
+        product.updateDisTime = undefined;
         await product.save();
         res.status(200).json({
             status:'success',
@@ -281,7 +283,7 @@ exports.getTopSales = catchAsync(async (req,res,next) =>{
 exports.getHome = catchAsync(async (req,res,next)=>{
     const topSales = await Product.find({discount:{$ne:undefined}}).sort({'disPercentage':-1});
     const categories = Product.schema.path('category').enumValues;
-    const sales = await Product.find({discount:{$ne:undefined}}).sort({'createdAt':-1});
+    const sales = await Product.find({discount:{$ne:undefined}}).sort({'updateDisTime':-1});
     res.status(200).json({
         topSales:topSales,
         sales:sales,

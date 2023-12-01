@@ -71,7 +71,7 @@ exports.login = async (req,res,next) =>{
             return next(new AppError('incorrect email',401))
         }
         if(! await user.correctPassword(password,user.password)){
-            return next(new AppError('incorrect password',401))
+            return next(new AppError('incorrect email or password',401))
         } 
         
         createSendToken(user,200,res)

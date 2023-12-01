@@ -58,7 +58,8 @@ const productSchema = new mongoose.Schema({
         type:String,
         enum:['fashion','watches','footwear','laptops&computers','sports','home','mobiles'],
         required:[true,'product must havea category']
-    }
+    },
+    updateDisTime:Date
 },
 {
     toJSON:{virtuals:true},
