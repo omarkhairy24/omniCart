@@ -21,7 +21,8 @@ exports.addWishlist = async (req,res,next)=>{
         if(!req.params.productId) req.params.productId = req.body.productId;
        const wishlist = await Wishlist.create({
         user:req.user.id,
-        product:req.params.productId
+        product:req.params.productId,
+        isFav:true
        })
        res.status(200).json({
         status:'success',
@@ -38,7 +39,8 @@ exports.addWishlist = async (req,res,next)=>{
 exports.removeFromWishlist = async(req,res,next) =>{
     try {
         if(!req.params.productId) req.params.productId = req.body.productId;
-        await Wishlist.findOneAndRemove({user:req.user.id,product:req.params.productId});
+        await Wishlist.findOneAndDelete({user:req.user.id,product:req.params.productId,isFav:true});
+        
         res.status(200).json({
             status:'success'
         })

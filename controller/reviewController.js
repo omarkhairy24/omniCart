@@ -18,9 +18,12 @@ exports.getReviews = async(req,res,next)=>{
 
 exports.addReview = async (req,res,next) =>{
     try {
-        if(!req.body.productId) req.body.productId = req.params.productId;
-        if(!req.body.user) req.body.user = (req.user.id);
-        const review = await Review.create(req.body);
+        const review = await Review.create({
+            product:req.params.productId,
+            user:req.user.id,
+            review:req.body.review,
+            rating:req.body.rating
+        });
         res.status(200).json({
             status:'succes',
             data:{
