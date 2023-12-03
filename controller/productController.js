@@ -30,12 +30,11 @@ exports.resizeImage = async(req,res,next)=>{
             return next();
         };
     
-        req.query.images = [];
+        req.body.images = [];
     
         await Promise.all(
             req.files.images.map(async(file,i)=>{
                 const fileName = `product-${req.params.id}-${Date.now()}-${i+1}.jpeg`;
-    
                 await sharp(file.buffer)
                 .toFormat('jpeg')
                 .jpeg({quality:100})
