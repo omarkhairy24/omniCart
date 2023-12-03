@@ -56,7 +56,7 @@ const productSchema = new mongoose.Schema({
     },
     category:{
         type:String,
-        enum:['fashion','watches','footwear','laptops&computers','sports','home','mobiles'],
+        enum:['fashion','watches','footwear','computers','sports','home','mobiles'],
         required:[true,'product must havea category']
     },
     updateDisTime:Date

@@ -207,7 +207,6 @@ exports.updatePassword = async (req,res,next) => {
         user.password = req.query.password;
         user.confirmPassword = req.query.confirmPassword;
         await user.save();
-    
         res.status(201).json({
             status:'success',
             data:{
