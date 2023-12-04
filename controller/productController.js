@@ -204,9 +204,15 @@ exports.getSearch = catchAsync(async(req,res,next) =>{
 
     let products = await Product.find({$and:[
         {$or:[
+        {name: { $regex: search, $options: "i"}},
         {name: { $regex: search, $options: "xi"}},
+        {name: { $regex: search, $options: "x"}},
+        {category:{ $regex: search, $options: "i"}},
         {category:{ $regex: search, $options: "xi"}},
-        {overview: { $regex: search, $options: "xi"}}
+        {category:{ $regex: search, $options: "x"}},
+        {overview: { $regex: search, $options: "x"}},
+        {overview: { $regex: search, $options: "xi"}},
+        {overview: { $regex: search, $options: "i"}}
     ]},JSON.parse(queryStr)]})
        
     res.status(200).json({
