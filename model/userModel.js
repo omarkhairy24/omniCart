@@ -48,6 +48,11 @@ const userSchema = new mongoose.Schema({
                 ref:'Product',
                 required:true
             },
+            owner:{
+                type:mongoose.Schema.ObjectId,
+                ref:'User',
+                required:true
+            },
             quantity:{
                 type:Number,
                 required:true
@@ -116,6 +121,7 @@ userSchema.methods.addToCart = function(product){
     }else{
         updatedCart.push({
             product:product._id,
+            owner:product.brand,
             quantity:newQuantity
         })
     };

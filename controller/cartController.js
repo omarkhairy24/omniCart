@@ -4,8 +4,7 @@ const AppError = require('../util/AppError');
 
 exports.getCart = async(req,res,next) =>{
     try {
-
-        const user = await User.findById(req.user.id).populate('cart.items.product','name images');
+        const user = await User.findById(req.user.id).populate('cart.items.owner cart.items.product','-cart');
         const cart = user.cart;
         res.status(200).json({
             status:'success',

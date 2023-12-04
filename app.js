@@ -37,11 +37,11 @@ const checkoutRoute = require('./routes/checkoutRoute');
 app.use(compression());
 
 app.use('/api',authRoute);
+app.use('/api',cartRoute);
 app.use('/api',productRoute);
 app.use('/api',userRoute);
 app.use('/api',reviewRoute);
 app.use('/api',wishlistRoute);
-app.use('/api',cartRoute);
 app.use('/api',checkoutRoute);
 
 app.all('*',(req,res,next)=>{

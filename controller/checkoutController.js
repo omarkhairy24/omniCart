@@ -43,7 +43,7 @@ exports.getCheckOutSession = async(req,res,next) =>{
 }
 
 const createCheckoutOrders = async session =>{
-    const user = await User.findOne({email:session}).populate('cart.items.product');
+    const user = await User.findOne({email:session}).populate('cart.items.product cat.items.owner');
     let products = user.cart.items;
     console.log('products',products);
     let total = 0;
@@ -52,7 +52,7 @@ const createCheckoutOrders = async session =>{
     })
     console.log('total',total);
     const productsInfo = products.map( p =>{
-        return {quantity:p.quantity , product:p.product._id}
+        return {quantity:p.quantity , product:p.product._id,owner:p.owner}
     })
     console.log('prod info', productsInfo);
     await Order.create({
