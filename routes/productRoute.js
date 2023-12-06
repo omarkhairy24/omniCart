@@ -15,7 +15,7 @@ router.get('/top-sales',productController.getTopSales);
 
 router.get('/home',productController.getHome)
 
-router.get('/:id',productController.getProduct);
+router.get('/:id',authController.isLoggedIn,productController.getProduct);
 
 router.get('/categories',productController.getCategories);
 

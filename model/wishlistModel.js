@@ -9,10 +9,6 @@ const wishlistModel = new mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         ref:'Product',
         required:true
-    },
-    isFav:{
-        type:Boolean,
-        default:false
     }
 });
 

@@ -6,10 +6,8 @@ router.get('/My-wishlist',authController.protect,authController.restrictTo('user
 
 // router.post('/add-to-wishlist',authController.protect,authController.restrictTo('user'),wishlistController.addWishlist);
 
-router.post('/add-to-wishlist/:productId',authController.protect,authController.restrictTo('user'),wishlistController.addWishlist);
+router.post('/wishlist/:productId',authController.protect,authController.restrictTo('user'),wishlistController.addWishlist);
 
 // router.delete('/remove-from-list',authController.protect,authController.restrictTo('user'),wishlistController.removeFromWishlist);
-
-router.delete('/remove-from-list/:productId',authController.protect,authController.restrictTo('user'),wishlistController.removeFromWishlist);
 
 module.exports = router

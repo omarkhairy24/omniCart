@@ -18,32 +18,24 @@ exports.getWishlist = async(req,res,next)=>{
 
 exports.addWishlist = async (req,res,next)=>{
     try {
+        let wishList;
         if(!req.params.productId) req.params.productId = req.body.productId;
-       const wishlist = await Wishlist.create({
-        user:req.user.id,
-        product:req.params.productId,
-        isFav:true
-       })
+        const isFav = await Wishlist.findOne({product:req.params.productId,user:req.user.id});
+        if(isFav){
+            await Wishlist.findOneAndDelete({user:req.user.id,product:req.params.productId});
+        }else{
+            wishList = await Wishlist.create({
+             user:req.user.id,
+             product:req.params.productId,
+             isFav:true
+            })
+        }
        res.status(200).json({
         status:'success',
         data:{
-            wishlist
+            wishList
         }
        })
-
-    } catch (error) {
-        next(error)
-    }
-}
-
-exports.removeFromWishlist = async(req,res,next) =>{
-    try {
-        if(!req.params.productId) req.params.productId = req.body.productId;
-        await Wishlist.findOneAndDelete({user:req.user.id,product:req.params.productId,isFav:true});
-        
-        res.status(200).json({
-            status:'success'
-        })
 
     } catch (error) {
         next(error)

@@ -91,14 +91,12 @@ exports.logout = (req, res) => {
 
 exports.protect = async (req,res,next)=> {
     try {
-        
         let token;
         if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
             token = req.headers.authorization.split(' ')[1];
         }else if(req.cookies.jwt){
             token = req.cookies.jwt
         }
-
         if(!token){
             return next(new AppError('no token provided',498))
         }
@@ -121,25 +119,32 @@ exports.protect = async (req,res,next)=> {
 }
 
 exports.isLoggedIn = async(req,res,next)=>{
-    if(req.cookies.jwt){
-        try {
-            
-            const decoded = await promisify(jwt.verify)(req.cookies.jwt,process.env.JWT_SECRET);
-            const user = await User.findById(decoded.id);
-            if(!user){
-                return next();
-            }
-            if(user.changePasswordAfter(decoded.iat)){
-                return next();
-            }
-            res.locals.user = user
-            return next();
-
-        } catch (error) {
-            return next();
+    try {
+        let token;
+        if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+            token = req.headers.authorization.split(' ')[1];
+        }else if(req.cookies.jwt){
+            token = req.cookies.jwt
         }
+        if(!token){
+            return next(new AppError('no token provided',498))
+        }
+
+        const decoded = await promisify(jwt.verify)(token,process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id);
+        if(!user){
+            return next(new AppError('user not found',404))
+        }
+        if(user.changePasswordAfter(decoded.iat)){
+            return next(new AppError('invalid token',498))
+        }
+        req.user = user; 
+        res.locals.user = user;
+        next();
+
+    } catch (error) {
+        return next()
     }
-    next();
 }
 
 exports.forgetPassword = async (req,res,next) =>{

@@ -1,5 +1,5 @@
 const Product = require('../model/productModel');
-const User = require('../model/userModel');
+const WishList = require('../model/wishlistModel');
 const multer = require('multer');
 const sharp = require('sharp');
 const AppError = require('../util/AppError');
@@ -72,10 +72,24 @@ exports.getAllProducts = catchAsync(async (req,res,next) =>{
 
 exports.getProduct = async (req,res,next)=>{
     try {
-        const products = await Product.findById(req.params.id).populate('reviews');
+        let isFav;
+        const product = await Product.findById(req.params.id).populate('reviews');
+        const recommended = await Product.find({$and:[{category:product.category},{name:{$ne:product.name}}]});
+        if(req.user){
+            const wishList = await WishList.findOne({product:product,user:req.user.id});
+            if(wishList){
+                isFav = true
+            }else{
+                isFav = false
+            }
+        }else{
+            isFav = false
+        }
         res.status(200).json({
             status:'success',
-            products
+            product,
+            isFav,
+            recommended
         })
 
     } catch (error) {
