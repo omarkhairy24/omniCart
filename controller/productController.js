@@ -4,6 +4,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const AppError = require('../util/AppError');
 const catchAsync = require('../util/catchAsync');
+const User = require('../model/userModel');
 
 const multerStroage = multer.memoryStorage();
 
@@ -72,31 +73,33 @@ exports.getAllProducts = catchAsync(async (req,res,next) =>{
 
 exports.getProduct = async (req,res,next)=>{
     try {
-        let isFav;
         const product = await Product.findById(req.params.id).populate('reviews');
         const recommended = await Product.find({$and:[{category:product.category},{name:{$ne:product.name}}]});
         if(req.user){
             const wishList = await WishList.findOne({product:product,user:req.user.id});
+            const user = await User.findById(req.user.id);
+            user.cart.items.some( p =>{
+                if (p.product._id.equals(req.params.id)){
+                    product.inCart = true
+                }else{
+                    product.inCart = false
+                }
+            });
             if(wishList){
-                isFav = true
+                product.isFav = true
             }else{
-                isFav = false
-            }
-        }else{
-            isFav = false
+                product.isFav = false
+            };
         }
         res.status(200).json({
             status:'success',
             product,
-            isFav,
             recommended
         })
-
     } catch (error) {
         next(error)
     }
 }
-
 
 exports.getSalesProd = catchAsync(async (req,res,next) =>{
     const product = await Product.find({discount:{$ne:undefined}}).sort({'updatedAt':-1});

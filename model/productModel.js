@@ -59,7 +59,15 @@ const productSchema = new mongoose.Schema({
         enum:['fashion','watches','footwear','computers','sports','home','mobiles'],
         required:[true,'product must havea category']
     },
-    updateDisTime:Date
+    updateDisTime:Date,
+    inCart:{
+        type:Boolean,
+        default:false
+    },
+    isFav:{
+        type:Boolean,
+        default:false
+    }
 },
 {
     toJSON:{virtuals:true},
