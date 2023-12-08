@@ -21,8 +21,8 @@ exports.addReview = async (req,res,next) =>{
         const review = await Review.create({
             product:req.params.productId,
             user:req.user.id,
-            review:req.body.review,
-            rating:req.body.rating
+            review:req.query.review,
+            rating:req.query.rating
         });
         res.status(200).json({
             status:'succes',
