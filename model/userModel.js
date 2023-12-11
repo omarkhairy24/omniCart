@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema({
         default:'user'
     },
     location:{
+        name:String,
         country:String,
         city:String,
         street:String,
