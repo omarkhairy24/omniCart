@@ -92,3 +92,10 @@ exports.addAddress = async (req,res,next)=>{
         next(error)
     }
 }
+
+exports.getUserAddress = async (req,res,next)=>{
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+        address:user.location
+    })
+}

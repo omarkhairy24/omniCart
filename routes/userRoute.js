@@ -4,6 +4,8 @@ const router = require('express').Router();
 
 router.get('/search-users',userController.getUsers);
 
+router.get('/user-address',authController.protect,userController.getUserAddress);
+
 router.get('/search-user/:id',userController.getUser);
 
 router.patch('/update-user',authController.protect,userController.updateUser);
