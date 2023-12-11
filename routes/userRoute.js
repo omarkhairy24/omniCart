@@ -8,6 +8,8 @@ router.get('/search-user/:id',userController.getUser);
 
 router.patch('/update-user',authController.protect,userController.updateUser);
 
+router.patch('/address',authController.protect,userController.addAddress);
+
 router.delete('/delete-me',authController.protect,userController.deactivateUser);
 
 module.exports = router;

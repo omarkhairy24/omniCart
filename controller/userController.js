@@ -1,4 +1,5 @@
 const User = require('../model/userModel');
+const AppError = require('../util/AppError');
 
 const filterObj = (req,...allowedFields)=>{
     const newObj = {};
@@ -64,6 +65,26 @@ exports.updateUser = async (req,res,next)=> {
 exports.deactivateUser = async(req,res,next) =>{
     try {
         await User.findByIdAndUpdate(req.user.id,{active:false})
+        res.status(200).json({
+            status:'success'
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.addAddress = async (req,res,next)=>{
+    try {
+        const user = await User.findByIdAndUpdate(req.user.id,{
+            location:{
+                country:req.query.country,
+                city:req.query.city,
+                street:req.query.street,
+                street2:req.query.street2,
+                zipcode:req.query.zipcode
+            },
+            phoneNumber:req.query.phoneNumber
+        })
         res.status(200).json({
             status:'success'
         })

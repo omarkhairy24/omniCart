@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
         unique:true,
         validate:validator.isEmail
     },
+    phoneNumber:String,
     password:{
         type:String,
         required:true,
@@ -36,6 +37,13 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum:['admin','user','company'],
         default:'user'
+    },
+    location:{
+        country:String,
+        city:String,
+        street:String,
+        street2:String,
+        zipcode:Number
     },
     active:{
         type:Boolean,
