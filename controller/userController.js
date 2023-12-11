@@ -131,6 +131,7 @@ exports.deleteAddress = async(req,res,next)=>{
 exports.getUserAddress = async (req,res,next)=>{
     const user = await User.findById(req.user.id).populate('location');
     res.status(200).json({
-        address:user.location
+        address:user.location,
+        phoneNumber:user.phoneNumber
     })
 }
