@@ -10,8 +10,12 @@ router.get('/search-user/:id',userController.getUser);
 
 router.patch('/update-user',authController.protect,userController.updateUser);
 
-router.patch('/address',authController.protect,userController.addAddress);
+router.post('/address',authController.protect,userController.addAddress);
+
+router.patch('/address/:id',authController.protect,userController.editAddress);
 
 router.delete('/delete-me',authController.protect,userController.deactivateUser);
+
+router.delete('/delete-address/:id',authController.protect,userController.deleteAddress);
 
 module.exports = router;

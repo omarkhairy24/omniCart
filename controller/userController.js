@@ -1,5 +1,6 @@
 const User = require('../model/userModel');
 const AppError = require('../util/AppError');
+const Address = require('../model/addressModel');
 
 const filterObj = (req,...allowedFields)=>{
     const newObj = {};
@@ -75,27 +76,60 @@ exports.deactivateUser = async(req,res,next) =>{
 
 exports.addAddress = async (req,res,next)=>{
     try {
-        const user = await User.findByIdAndUpdate(req.user.id,{
-            location:{
-                name:req.query.name,
-                country:req.query.country,
-                city:req.query.city,
-                street:req.query.street,
-                street2:req.query.street2,
-                zipcode:req.query.zipcode
-            },
-            phoneNumber:req.query.phoneNumber
+        const address = await Address.create({
+            user:req.user.id,
+            name:req.query.name,
+            country:req.query.country,
+            city:req.query.city,
+            street:req.query.street,
+            street2:req.query.street2,
+            zipcode:req.query.zipcode
+        })
+        const user = await User.findById(req.user.id);
+        user.phoneNumber = req.query.phoneNumber
+        await user.save({validateModifiedOnly:true});
+        res.status(201).json({
+            status:'success',
+            address
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.editAddress = async(req,res,next)=>{
+    try {
+        const address = await Address.findById(req.params.id)
+        if(address.user._id.toString() !== req.user.id){
+            return next(new AppError('not authorized',403))
+        }
+        await Address.findByIdAndUpdate(req.params.id,req.query,{
+            new:true,
+            runValidators:true
         })
         res.status(200).json({
-            status:'success'
+            status:'success',
+            address
         })
     } catch (error) {
         next(error)
     }
 }
 
+exports.deleteAddress = async(req,res,next)=>{
+    const address = await Address.findById(req.params.id)
+    if(address.user._id.toString() !== req.user.id){
+        return next(new AppError('not authorized',403))
+    }
+    await Address.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+        status:'success'
+    })
+}
+
 exports.getUserAddress = async (req,res,next)=>{
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).populate('location');
     res.status(200).json({
         address:user.location
     })

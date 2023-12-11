@@ -38,14 +38,6 @@ const userSchema = new mongoose.Schema({
         enum:['admin','user','company'],
         default:'user'
     },
-    location:{
-        name:String,
-        country:String,
-        city:String,
-        street:String,
-        street2:String,
-        zipcode:Number
-    },
     active:{
         type:Boolean,
         default:true
@@ -76,7 +68,11 @@ const userSchema = new mongoose.Schema({
     toObject:{virtuals:true}
 });
 
-
+userSchema.virtual('location',{
+    ref:'Address',
+    foreignField:'user',
+    localField:'_id'
+})
 
 userSchema.virtual('wishlists',{
     ref:'Wishlist',
