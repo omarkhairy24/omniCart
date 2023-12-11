@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const addressSchma = new mongoose.Schema({
     user:{
         type:mongoose.Schema.ObjectId,
-        ref:'USer',
+        ref:'User',
         required:true
     },
     name:String,
@@ -16,5 +16,14 @@ const addressSchma = new mongoose.Schema({
     toJSON:{virtuals:true},
     toObject:{virtuals:true}
 });
+
+addressSchma.pre(/^find/,function(next){
+    this.populate('user');
+    next();
+})
+
+addressSchma.virtual('phoneNumber').get(function(){
+    return this.user.phoneNumber
+})
 
 module.exports = mongoose.model('Address',addressSchma)
