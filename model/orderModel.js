@@ -25,6 +25,11 @@ const orderModel = new mongoose.Schema({
             required:true
         }
     }],
+    orderStatus:{
+        type:String,
+        enum:[{'packing':0},{'shipping':1},{'arriving':2},{'success':3}],
+        default:'packing'
+    },
     totalPrice:{
         type:Number,
         required:true
