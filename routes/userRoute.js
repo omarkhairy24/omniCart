@@ -6,6 +6,8 @@ router.get('/search-users',userController.getUsers);
 
 router.get('/user-address',authController.protect,userController.getUserAddress);
 
+router.get('/me',authController.protect,userController.getUserDetails);
+
 router.get('/search-user/:id',userController.getUser);
 
 router.patch('/update-user',authController.protect,userController.updateUser);

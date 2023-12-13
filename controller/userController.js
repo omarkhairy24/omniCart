@@ -43,11 +43,11 @@ exports.getUser = async(req,res,next)=>{
 
 exports.updateUser = async (req,res,next)=> {
     try {
-        if(req.body.password||req.body.confirmPassword){
+        if(req.query.password||req.query.confirmPassword){
             return next(new AppError('not allowed',500))
         }
 
-        const filterBody = filterObj(req.body,'name','email');
+        const filterBody = filterObj(req.query,'name','email');
         let user  = await User.findByIdAndUpdate(req.user.id ,filterBody,{
             new:true,
             runValidators:true
@@ -133,4 +133,15 @@ exports.getUserAddress = async (req,res,next)=>{
     res.status(200).json({
         address:user.location
     })
+}
+
+exports.getUserDetails = async(req,res,next)=>{
+    try {
+        const user = await User.findById(req.user.id).select('-cart');
+        res.status(200).json({
+            user
+        })
+    } catch (error) {
+        next(error)
+    }
 }
