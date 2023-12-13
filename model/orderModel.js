@@ -34,19 +34,14 @@ const orderModel = new mongoose.Schema({
         type:Number,
         required:true
     }
+},{
+    toObject:{virtuals:true},
+    toJSON:{virtuals:true},
+    timestamps:true
 });
 
-orderModel.pre(/^find/,function(next) {
-    this.populate({
-        path:'user',
-        select:'name email'
-    }).populate({
-        path:'products',
-        populate:{
-            path:'product'
-        }
-    })
-    next();
+orderModel.virtual('orderAt').get(function(){
+    return `${this.createdAt.getMonth()}-${this.createdAt.getDay()}-${this.createdAt.getFullYear()}`
 })
 
 module.exports = mongoose.model('Order',orderModel);

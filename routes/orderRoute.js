@@ -4,6 +4,8 @@ const orderController = require('../controller/orderController');
 
 router.get('/my-orders',authController.protect,orderController.getOrders);
 
-router.post('/add-order',authController.protect,orderController.addOrder);
+router.get('/order-detail/:id',authController.protect,orderController.getSingleOrder)
+
+router.post('/add-order',authController.protect,authController.restrictTo('user'),orderController.addOrder);
 
 module.exports = router
