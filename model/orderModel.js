@@ -27,7 +27,7 @@ const orderModel = new mongoose.Schema({
     }],
     orderStatus:{
         type:String,
-        enum:[{'packing':0},{'shipping':1},{'arriving':2},{'success':3}],
+        enum:[{0:'packing'},{1:'shipping'},{2:'arriving'},{3:'success'}],
         default:'packing'
     },
     totalPrice:{

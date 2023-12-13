@@ -33,6 +33,7 @@ const reviewRoute = require('./routes/reviewRoute');
 const wishlistRoute = require('./routes/wishlistRoute');
 const cartRoute = require('./routes/cartRoute');
 const checkoutRoute = require('./routes/checkoutRoute');
+const orderRoute = require('./routes/orderRoute');
 
 app.use(compression());
 
@@ -40,6 +41,7 @@ app.use('/api',authRoute);
 app.use('/api',userRoute);
 app.use('/api',cartRoute);
 app.use('/api',wishlistRoute);
+app.use('/api',orderRoute);
 app.use('/api',productRoute);
 app.use('/api',reviewRoute);
 app.use('/api',checkoutRoute);

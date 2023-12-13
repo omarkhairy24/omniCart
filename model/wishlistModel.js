@@ -15,7 +15,7 @@ const wishlistModel = new mongoose.Schema({
 wishlistModel.pre(/^find/,function(next){
     this.populate({
         path:'product',
-        select:'name images price slug disPercentage updateDisTime discount'
+        select:'name images price slug disPercentage updateDisTime discount ratingAverage ratingQuantity'
     })
     next();
 })
