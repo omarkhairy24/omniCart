@@ -211,14 +211,17 @@ exports.getCategory = catchAsync(async(req,res)=>{
 
 exports.getSearch = catchAsync(async(req,res,next) =>{
     const search = req.query.search;
-    let ratingAverage = req.query.ratingAverage
-    let price = req.query.price
-    const queryObj = { price,ratingAverage };
-
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|eq|lte|lt)\b/g, match => `$${match}`);
-    console.log(queryStr);
-
+    // let ratingAverage = req.query.ratingAverage
+    // let price = req.query.price
+    // const queryObj = { price,ratingAverage };
+    // let queryStr = JSON.stringify(queryObj);
+    // queryStr = queryStr.replace(/\b(gte|gt|eq|lte|lt)\b/g, match => `$${match}`);
+    // JSON.parse(queryStr)
+    const  minPrice = req.query.minPrice || 0;
+    const maxPrice = req.query.maxPrice || Number.MAX_VALUE;
+    const minRating = req.query.minRating || 0;
+    const maxRating = req.query.maxRating || 5;
+    console.log(minPrice , maxPrice);
     let products = await Product.find({$and:[
         {$or:[
         {name: { $regex: search, $options: "i"}},
@@ -230,7 +233,7 @@ exports.getSearch = catchAsync(async(req,res,next) =>{
         {overview: { $regex: search, $options: "x"}},
         {overview: { $regex: search, $options: "xi"}},
         {overview: { $regex: search, $options: "i"}}
-    ]},JSON.parse(queryStr)]})
+    ]},{price:{$lte:maxPrice , $gte:minPrice}},{ratingAverage:{$lte:maxRating , $gte:minRating}}]})
        
     res.status(200).json({
         status:'success',
