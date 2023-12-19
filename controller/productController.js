@@ -320,11 +320,3 @@ exports.getHome = catchAsync(async (req,res,next)=>{
         products:products
     })
 });
-
-exports.getOffers = catchAsync(async(req,res,next)=>{
-    const products = await Product.find({discount:{$ne:undefined}});
-    res.status(200).json({
-        products,
-        len:products.length
-    })
-})

@@ -15,13 +15,11 @@ router.get('/top-sales',productController.getTopSales);
 
 router.get('/home',productController.getHome)
 
-router.get('/:id',authController.isLoggedIn,productController.getProduct);
-
 router.get('/categories',productController.getCategories);
 
-router.get('/categories/:category',productController.getCategory);
+router.get('/:id',authController.isLoggedIn,productController.getProduct);
 
-router.get('/products/offers',productController.getOffers);
+router.get('/categories/:category',productController.getCategory);
 
 router.post('/add-product',authController.protect,authController.restrictTo('company'),productController.uploadImage,productController.resizeImage,productController.createProduct);
 
