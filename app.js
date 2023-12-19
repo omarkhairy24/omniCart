@@ -6,12 +6,10 @@ const dotenv = require('dotenv');
 const mongoSanitize = require('express-mongo-sanitize');
 const morgan = require('morgan');
 const compression = require('compression');
-const cors = require('cors');
 const AppError = require('./util/AppError');
 const checkoutController = require('./controller/checkoutController');
 
 dotenv.config();
-
 
 app.post('/webhook',express.raw({type: 'application/json'}),checkoutController.webhookCheckout);
 app.use(express.json());
@@ -20,9 +18,6 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use("/images",express.static(path.join(__dirname,'public')))
 
-app.use(cors())
-
-app.options('*',cors())
 
 const errorController = require('./controller/errorController');
 

@@ -19,7 +19,9 @@ router.get('/:id',authController.isLoggedIn,productController.getProduct);
 
 router.get('/categories',productController.getCategories);
 
-router.get('/:category',productController.getCategory);
+router.get('/categories/:category',productController.getCategory);
+
+router.get('/products/offers',productController.getOffers);
 
 router.post('/add-product',authController.protect,authController.restrictTo('company'),productController.uploadImage,productController.resizeImage,productController.createProduct);
 

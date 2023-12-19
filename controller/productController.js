@@ -312,11 +312,19 @@ exports.getHome = catchAsync(async (req,res,next)=>{
         {
             $sample:{size:await Product.countDocuments()}
         }
-    ]).limit(10)
+    ])
     res.status(200).json({
         topSales:topSales,
         sales:sales,
         categories:categories,
         products:products
+    })
+});
+
+exports.getOffers = catchAsync(async(req,res,next)=>{
+    const products = await Product.find({discount:{$ne:undefined}});
+    res.status(200).json({
+        products,
+        len:products.length
     })
 })
