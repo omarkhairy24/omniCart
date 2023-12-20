@@ -165,7 +165,8 @@ exports.forgetPassword = async (req,res,next) =>{
 
        res.status(200).json({
         status:'success',
-        message:'token sent to your email.'
+        message:'token sent to your email.',
+        resetToken
     })
 
     } catch (error) {
@@ -180,7 +181,6 @@ exports.forgetPassword = async (req,res,next) =>{
 exports.resetPassword = async (req,res,next) =>{
     try {
         const resetToken = crypto.createHash('sha256').update(req.query.token).digest('hex');
-    
         const user = await User.findOne({
             passordResetToken:resetToken,
             passwordResetExpires:{$gt:Date.now()}
