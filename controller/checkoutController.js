@@ -24,17 +24,17 @@ exports.getPayment = catchAsync(async(req,res,next)=>{
 
       const user = await User.findById(req.user.id).populate('cart.items.product');
       let products = user.cart.items;
-      const totalPrice = products.map(p=>{
-        console.log(p);
-        return Math.ceil(p.product.price)
-      })
+      let totalAmount = 0;
+      products.map(p=>{
+        totalAmount = Math.ceil(p.product.price)
+      });
 
       res.json({
         paymentIntent: paymentIntent.client_secret,
         ephemeralKey: ephemeralKey.secret,
         customer: customer.id,
         publishableKey: 'pk_test_51Ndu2dFAivaG0tEbtFs71hgCXj6SZGVLntuYKWYrtZLCDipciwvTc3rQWz5ftH77MDwGoU5bDOq3IojgWRh9BvVb00E8DGww5D',
-        amount:totalPrice
+        amount:totalAmount
       });
 })
 
