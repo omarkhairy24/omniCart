@@ -11,7 +11,7 @@ const checkoutController = require('./controller/checkoutController');
 
 dotenv.config();
 
-app.post('/webhook',express.raw({type: 'application/json'}),checkoutController.webhookCheckout);
+// app.post('/webhook',express.raw({type: 'application/json'}),checkoutController.webhookCheckout);
 app.use(express.json());
 app.use(mongoSanitize());
 app.use(morgan('dev'));
