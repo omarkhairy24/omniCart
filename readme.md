@@ -17,8 +17,8 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
 ## Features:
      - Authentication
 
-        | Feature                 | Coded?  |
-        | ----------------------- | ------- |
+        | Feature                 | Coded?   |
+        | ----------------------- | -------: |
         | Signup                  |  ✔️     |
         | Login                   |  ✔️     |
         | Forget & Reset Password |  ✔️     |
@@ -29,7 +29,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
       Admin Features
     
         | Feature               | Coded?   |
-        | --------------------- | -------  |
+        | --------------------- | -------: |
         | Add Product           |  ✔️     |
         | Edit a Product        |  ✔️     |
         | Delete a Product      |  ✔️     |
@@ -38,8 +38,8 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     
       User Features
     
-        | Feature                         | Coded? |
-        | ------------------------------- | ------ |
+        | Feature                         | Coded?  |
+        | ------------------------------- | ------: |
         | List of Products and Categories |  ✔️    |
         | Sales                           |  ✔️    |
         | Search for Product              |  ✔️    |
@@ -51,15 +51,15 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     - Reviews
     
         | Feature               |   Coded? |
-        | --------------------- | -------- |
+        | --------------------- | -------: |
         | Create Review         |  ✔️     |
         | Update Review         |  ✔️     |
         | Delete Review         |  ✔️     |
     
     - Wishlist
     
-        | Feature               |  Coded? |
-        | --------------------- | ------- |
+        | Feature               |  Coded?  |
+        | --------------------- | -------: |
         | Add to Wishlist       |  ✔️     |
         | Remove from Wishlist  |  ✔️     |
 
