@@ -17,7 +17,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     -authentication:
 
     | Feature  |  Coded?       | 
-    |:----------:|:-------------:|
+    |:----------|-------------:|
     | signup | ✔️ |
     | login | ✔️ |
     | forget & reset password | ✔️ | 
