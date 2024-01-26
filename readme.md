@@ -1,10 +1,10 @@
-#OMNI-CART
+# OMNI-CART
 
 Omni Cart is restful api for E-Commerce android application that has the most features requried in e-commerce process.
 you can get it from MediaFire:
 https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
 
-##Tools:
+## Tools:
     .expressjs
     .mongoose
     .nodemailer
@@ -13,7 +13,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     .json-web-token
     .stripe
 
-##Features:
+## Features:
     -authentication:
 
         | Feature  |  Coded?       | 
@@ -60,7 +60,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
         | add to wishlist | ✔️ | 
         | remove from wishlist | ✔️ |
 
-##base url:https://omnicart.onrender.com/api
+## base url:https://omnicart.onrender.com/api
 
 ## DB
 MONGO_URL: either a local or atlas mongodb connection
