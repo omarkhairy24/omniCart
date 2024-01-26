@@ -77,3 +77,25 @@ exports.getSingleOrder = catchAsync(async (req,res,next)=>{
     })
 
 })
+
+exports.deleteOrder = catchAsync(async (req,res,next)=>{
+    const order = await Order.findById(req.params.orderId)
+    if (order.user._id.toString() !== req.user.id.toString()){
+        res.status(403).json({
+            message:'not authorized'
+        })
+    }
+    if(order.orderStatus === 'packing' || order.orderStatus === 'shipping' ){
+        await Order.findByIdAndDelete(req.params.orderId)
+        res.status(200).json({
+            status:'success',
+            message:'order deleted successfully'
+        })
+    }
+    else{
+        res.json({
+            message:'you cant cancel the order now'
+        })
+    }
+
+})

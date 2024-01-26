@@ -8,4 +8,6 @@ router.get('/order-detail/:id',authController.protect,orderController.getSingleO
 
 router.post('/add-order',authController.protect,authController.restrictTo('user'),orderController.addOrder);
 
+router.delete('/delete-order/:orderId',authController.protect,orderController.deleteOrder);
+
 module.exports = router
