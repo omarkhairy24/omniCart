@@ -14,7 +14,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     .stripe
 
 ## Features:
-    -authentication:
+    ### Authentication
 
     | Feature                 | Coded? |
     | ----------------------- | ------ |
@@ -22,43 +22,45 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
     | Login                   | ✔️     |
     | Forget & Reset Password| ✔️     |
     | Update Password         | ✔️     |
-
-    -products:
-
-    admin Features
-
-    | Feature  |  Coded?       | 
-    |:----------:|:-------------:|
-    | Add  Product | ✔️ | 
-    | Edit a Product | ✔️ | 
-    | Delete a Product | ✔️ |
-    | add discount | ✔️ |
-    | remove discount | ✔️ |
-
-    user Features
-
-    | Feature  |  Coded?       |
-    |:----------:|:-------------:|
-    | List of Products and categories | ✔️ |
-    | sales | ✔️ |
-    | search for product | ✔️ |
-    | Add to cart | ✔️ |
-    | See Cart | ✔️ | 
-    | Remove from Cart | ✔️ |
-    | Checkout | ✔️ | 
-
-    -reviews:
-    | Feature  |  Coded?       |
-    |:----------:|:-------------:|
-    | Create review | ✔️ | 
-    | update review | ✔️ | 
-    | delete review | ✔️ |
-
-    -wishlist:
-    | Feature  |  Coded?       |
-    |:----------:|:-------------:|
-    | add to wishlist | ✔️ | 
-    | remove from wishlist | ✔️ |
+    
+    ### Products
+    
+    #### Admin Features
+    
+    | Feature               | Coded? |
+    | --------------------- | ------ |
+    | Add Product           | ✔️     |
+    | Edit a Product        | ✔️     |
+    | Delete a Product      | ✔️     |
+    | Add Discount          | ✔️     |
+    | Remove Discount       | ✔️     |
+    
+    #### User Features
+    
+    | Feature                 | Coded? |
+    | ----------------------- | ------ |
+    | List of Products and Categories | ✔️ |
+    | Sales                   | ✔️     |
+    | Search for Product      | ✔️     |
+    | Add to Cart             | ✔️     |
+    | See Cart                | ✔️     |
+    | Remove from Cart        | ✔️     |
+    | Checkout               | ✔️     |
+    
+    ### Reviews
+    
+    | Feature               | Coded? |
+    | --------------------- | ------ |
+    | Create Review         | ✔️     |
+    | Update Review         | ✔️     |
+    | Delete Review         | ✔️     |
+    
+    ### Wishlist
+    
+    | Feature               | Coded? |
+    | --------------------- | ------ |
+    | Add to Wishlist       | ✔️     |
+    | Remove from Wishlist  | ✔️     |
 
 ## base url:https://omnicart.onrender.com/api
 
