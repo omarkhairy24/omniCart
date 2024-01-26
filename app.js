@@ -7,7 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const morgan = require('morgan');
 const compression = require('compression');
 const AppError = require('./util/AppError');
-const checkoutController = require('./controller/checkoutController');
+// const checkoutController = require('./controller/checkoutController');
 
 dotenv.config();
 

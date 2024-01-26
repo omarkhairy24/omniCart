@@ -1,8 +1,9 @@
-const Stripe = require('stripe')('sk_test_51Ndu2dFAivaG0tEb2JCAg4EpSDOGrU8HuWOBf2ZEzQGJw4LCFSVQ9YTloF69Rxuc5ntDX6LScTRl0q3Nhws7nCa400zAJYphnV');
+const Stripe = require('stripe')(process.env.STRIPE_KEY);
 const User = require('../model/userModel');
 const Order = require('../model/orderModel');
 const AppError = require('../util/AppError');
 const catchAsync = require('../util/catchAsync');
+
 
 exports.getPayment = catchAsync(async(req,res,next)=>{
     const customer = await Stripe.customers.create();
@@ -33,7 +34,7 @@ exports.getPayment = catchAsync(async(req,res,next)=>{
         paymentIntent: paymentIntent.client_secret,
         ephemeralKey: ephemeralKey.secret,
         customer: customer.id,
-        publishableKey: 'pk_test_51Ndu2dFAivaG0tEbtFs71hgCXj6SZGVLntuYKWYrtZLCDipciwvTc3rQWz5ftH77MDwGoU5bDOq3IojgWRh9BvVb00E8DGww5D',
+        publishableKey: process.env.PUBLISH_KEY,
         amount:totalAmount
       });
 })
