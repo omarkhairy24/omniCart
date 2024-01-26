@@ -25,7 +25,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
 
     -products:
 
-        <b>admin Features</b>
+        admin Features
 
         | Feature  |  Coded?       | 
         |----------|:-------------:|
@@ -35,7 +35,7 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
         | add discount | ✔️ |
         | remove discount | ✔️ |
 
-        <b>user Features</b>
+        user Features
 
         | Feature  |  Coded?       |
         |----------|:-------------:|
