@@ -1,6 +1,6 @@
-# OMNI-CART
+# OMNICART
 
-Omni Cart is restful api for E-Commerce android application that has the most features requried in e-commerce process.
+Omni Cart is Restful Api for E-Commerce android application that has the most features requried in e-commerce process.
 
 you can get it from MediaFire:
 https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
