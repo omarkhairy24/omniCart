@@ -16,12 +16,12 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
 ## Features:
     -authentication:
 
-    | Feature  |  Coded?       | 
-    |----------|-------------:|
-    | signup | ✔️ |
-    | login | ✔️ |
-    | forget & reset password | ✔️ | 
-    | update password | ✔️ |
+    | Feature                 | Coded? |
+    | ----------------------- | ------ |
+    | Signup                  | ✔️     |
+    | Login                   | ✔️     |
+    | Forget & Reset Password| ✔️     |
+    | Update Password         | ✔️     |
 
     -products:
 
