@@ -16,105 +16,49 @@ https://www.mediafire.com/file/v42vxnrtg85f336/OmniCart.apk/file
 ## Features:
     -authentication:
 
-        <table>
-          <tr>
-            <th>Feature</th>
-            <th>Coded</th>
-          </tr>
-          <tr>
-            <td>signup</td>
-            <td>login</td>
-            <td>forget & reset password</td>
-            <td>update password</td>
-          </tr>
-          <tr>
-            <td>✔️</td>
-            <td>✔️</td>
-            <td>✔️</td>
-            <td>✔️</td>
-          </tr>
-        </table>
+    | Feature  |  Coded?       | 
+    |:----------:|:-------------:|
+    | signup | ✔️ |
+    | login | ✔️ |
+    | forget & reset password | ✔️ | 
+    | update password | ✔️ |
+
     -products:
 
-        admin Features
-            <table>
-              <tr>
-                <th>Feature</th>
-                <th>Coded</th>
-              </tr>
-              <tr>
-                <td>Add  Product</td>
-                <td>Edit a Product</td>
-                <td>Delete a Product</td>
-                <td>add discount</td>
-                <td>remove discount</td>
-              </tr>
-              <tr>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-              </tr>
-            </table>
+    admin Features
 
-        user Features
-            <table>
-              <tr>
-                <th>Feature</th>
-                <th>Coded</th>
-              </tr>
-              <tr>
-                <td>List of Products and categories</td>
-                <td>sales</td>
-                <td>search for product</td>
-                <td>Add to cart</td>
-                <td>Remove from Cart</td>
-                <td>Checkout</td>
-              </tr>
-              <tr>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-              </tr>
-            </table>
-    
+    | Feature  |  Coded?       | 
+    |:----------:|:-------------:|
+    | Add  Product | ✔️ | 
+    | Edit a Product | ✔️ | 
+    | Delete a Product | ✔️ |
+    | add discount | ✔️ |
+    | remove discount | ✔️ |
+
+    user Features
+
+    | Feature  |  Coded?       |
+    |:----------:|:-------------:|
+    | List of Products and categories | ✔️ |
+    | sales | ✔️ |
+    | search for product | ✔️ |
+    | Add to cart | ✔️ |
+    | See Cart | ✔️ | 
+    | Remove from Cart | ✔️ |
+    | Checkout | ✔️ | 
+
     -reviews:
-        <table>
-              <tr>
-                <th>Feature</th>
-                <th>Coded</th>
-              </tr>
-              <tr>
-                <td>Create review</td>
-                <td>update review</td>
-                <td>delete review</td>
-              </tr>
-              <tr>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
-              </tr>
-            </table>
+    | Feature  |  Coded?       |
+    |:----------:|:-------------:|
+    | Create review | ✔️ | 
+    | update review | ✔️ | 
+    | delete review | ✔️ |
 
     -wishlist:
-            <table>
-              <tr>
-                <th>Feature</th>
-                <th>Coded</th>
-              </tr>
-              <tr>
-                <td>add to wishlist</td>
-                <td>remove from wishlist</td>
-              </tr>
-              <tr>
-                <td>✔️</td>
-                <td>✔️</td>
-              </tr>
-            </table>
+    | Feature  |  Coded?       |
+    |:----------:|:-------------:|
+    | add to wishlist | ✔️ | 
+    | remove from wishlist | ✔️ |
 
 ## base url:https://omnicart.onrender.com/api
 
